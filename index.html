@@ -1,23 +1,54 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device,initial-scale=1">
-  <title>3D画像につきまして</title>
-  <meta name="description" content="3D画像、公開を終了させていただきます。閲覧頂き、ありがとうございました。">
-  <link rel="stylesheet" href="style.css">
-  <meta http-equiv="refresh" content="180">
-  <meta http-equiv="x-ua-compatible" content="IE=edge">
-</head>
-<body bgcolor="#fff" class="drawer drawer--right">
-  <font color="#111111">
-    <div class="pink"><span>お知らせ</span>
-      3D画像、公開を終了させていただきます。<br>閲覧頂き、ありがとうございました。<br><br>また、ご協力くださいました関係者の皆様、ありがとうございました。<br></div>
-  </font>
-  <br>
-  <br>
-  <br>
-  <br>
-  <footer>sekigami@shin-eng.co.jp</footer>
-</body>
+	<head>
+		<title>神明遺跡|井戸出土状況|3D画像</title>
+		<meta name="description" content="山梨県笛吹市石和町で発掘調査を行っている神明遺跡にて発見された井戸の出土状況を復元した展示資料になります。">
+		<meta charset="utf-8">
+		<!-- 3Dデータ取得者：小林正輝、3Dデータ編集者・Webページ作成者：関上高士 -->
+		<meta name="generator" content="Three.js Editor">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: sans-serif;
+				font-size: 11px;
+				background-color: #000;
+				margin: 0px;
+			}
+			canvas {
+				display: block;
+			}
+		</style>
+	</head>
+	<body ontouchstart="">
+		<script type="module">
+
+			import * as THREE from './js/three.module.js';
+			import { APP } from './js/app.js';
+			import { VRButton } from './js/VRButton.js';
+			import { OrbitControls } from './js/OrbitControls.js';
+			window.OrbitControls = OrbitControls;
+
+			window.THREE = THREE; // Used by APP Scripts.
+			window.VRButton = VRButton; // Used by APP Scripts.
+
+			var loader = new THREE.FileLoader();
+			loader.load( 'app.json', function ( text ) {
+
+				var player = new APP.Player();
+				player.load( JSON.parse( text ) );
+				player.setSize( window.innerWidth, window.innerHeight );
+				player.play();
+
+				document.body.appendChild( player.dom );
+
+				window.addEventListener( 'resize', function () {
+
+					player.setSize( window.innerWidth, window.innerHeight );
+
+				} );
+
+			} );
+
+		</script>
+	</body>
 </html>
